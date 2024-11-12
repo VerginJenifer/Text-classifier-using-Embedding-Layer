@@ -31,7 +31,7 @@ Train the model for 30 epochs using the prepared training data and validate its 
 Evaluate the model's accuracy and loss, and plot the results to track performance over time.
 ## PROGRAM
 ### Import necessary packages:
-
+```
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
@@ -278,7 +278,7 @@ def plot_graphs(history, metric):
 print('Name: D Vergin Jenifer       Register Number: 212223240174      ')
 plot_graphs(history, "accuracy")
 plot_graphs(history, "loss")
-
+```
 ### Name: D Vergin Jenifer 
 ### Register Number: 12223240174 
 
