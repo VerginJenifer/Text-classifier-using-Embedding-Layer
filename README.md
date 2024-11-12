@@ -52,6 +52,7 @@ with open("extracted_data/BBC News Train.csv", 'r') as csvfile:
 
 
 # Define the global variables
+
 VOCAB_SIZE = 1000
 EMBEDDING_DIM = 16
 MAX_LENGTH = 120
@@ -68,6 +69,7 @@ print(f"{data[0]}\n{data[1]}")
 ### Check for the labels of the data:
 
 # Test the function
+
 print(f"There are {len(data)} sentence-label pairs in the dataset.\n")
 print(f"First sentence has {len((data[0,1]).split())} words.\n")
 print(f"The first 5 labels are {data[:5,2]}")
@@ -98,13 +100,15 @@ def train_val_datasets(data):
     return train_dataset, validation_dataset
 
 # Create the datasets
+
 train_dataset, validation_dataset = train_val_datasets(data)
 print('Name: D Vergin Jenifer       Register Number: 212223240174      ')
 print(f"There are {train_dataset.cardinality()} sentence-label pairs for training.\n")
 print(f"There are {validation_dataset.cardinality()} sentence-label pairs for validation.\n")
      
 
-![image](https://github.com/user-attachments/assets/bb23bb38-a933-40e4-96f6-96952dc37f52)
+![image](https://github.com/user-attachments/assets/690d8a2a-52a9-45bd-b6ab-f9bac79afc48)
+
 
 
 ### Standardize the Function:
@@ -152,6 +156,7 @@ def fit_vectorizer(train_sentences, standardize_func):
 
 
 # Create the vectorizer
+
 text_only_dataset = train_dataset.map(lambda text, label: text)
 vectorizer = fit_vectorizer(text_only_dataset, standardize_func)
 vocab_size = vectorizer.vocabulary_size()
@@ -159,7 +164,7 @@ print('Name: D Vergin Jenifer       Register Number: 212223240174      ')
 print(f"Vocabulary contains {vocab_size} words\n")
      
 
-![image](https://github.com/user-attachments/assets/01892f3e-4e53-4d82-a94b-3f03ee138fc4)
+![image](https://github.com/user-attachments/assets/5204ae03-aa7b-40bf-816f-177778a7fc19)
 
 ### Label encoder Function:
 
@@ -181,6 +186,7 @@ def fit_label_encoder(train_labels, validation_labels):
 ### Create the label Encoder:
 
 # Create the label encoder
+
 train_labels_only = train_dataset.map(lambda text, label: label)
 validation_labels_only = validation_dataset.map(lambda text, label: label)
 
@@ -188,7 +194,7 @@ label_encoder = fit_label_encoder(train_labels_only,validation_labels_only)
 print('Name: D Vergin Jenifer       Register Number: 212223240174      ')
 print(f'Unique labels: {label_encoder.get_vocabulary()}')
 
-![image](https://github.com/user-attachments/assets/0a580bb7-dcc1-4c47-a70e-61bdccfd9ad4)
+![image](https://github.com/user-attachments/assets/025dab17-d8e5-4b99-a29d-8f60b2e0edae)
 
 ### Preprocess the data function:
 
@@ -205,6 +211,7 @@ def preprocess_dataset(dataset, vectorizer, label_encoder, batch_size=32):
     
     return dataset
 # Preprocess your dataset
+
 train_proc_dataset = preprocess_dataset(train_dataset, vectorizer, label_encoder)
 validation_proc_dataset = preprocess_dataset(validation_dataset, vectorizer, label_encoder)
 
@@ -214,7 +221,7 @@ print('Name: D Vergin Jenifer       Register Number: 212223240174      ')
 print(f"Shape of the train batch: {train_batch[0].shape}")
 print(f"Shape of the validation batch: {validation_batch[0].shape}")
 
-![image](https://github.com/user-attachments/assets/e08855dd-c889-43d3-98f8-138c778ce06f)
+![image](https://github.com/user-attachments/assets/dceb2ad3-fe98-4f76-9945-2a4963b209bf)
 
 ### Create Model:
 
@@ -278,4 +285,4 @@ plot_graphs(history, "loss")
 ## OUTPUT:
 ### Loss, Accuracy Vs Iteration Plot
 
-![image](https://github.com/user-attachments/assets/6d4ea9cd-7983-4f40-b652-a5a7f421537a)
+![image](https://github.com/user-attachments/assets/cb7e61a5-6cb5-48cf-b5d0-f39777da2048)
